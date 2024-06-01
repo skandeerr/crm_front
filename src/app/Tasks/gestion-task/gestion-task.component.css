@@ -1,0 +1,60 @@
+@import '~typeface-montserrat';
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+/* .main-body {
+    padding-top: 20px;
+    padding-left: 50px;
+    margin: 0 auto;
+   
+    max-width: 1248px;
+    mat-form-field{
+      width: 100%;  
+    }
+} */
+
+
+
+.modal-title{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn-outline-success{
+  width: 100%;
+}
+
+table tr:nth-child(even){
+    background-color: #e4e3e3
+}
+
+th {
+	background: #9d8d8d;
+	color: #fff;
+  }
+
+  .header_wrap {
+	padding:30px 0;
+  }
+
+  .tb_search{
+	width: 20%;
+	float:right;
+  }
+  .tb_add{
+	width: 20%;
+	float:left;
+  }
+  .pagination-container {
+	width: 70%;
+	float:left;
+  }
+  .rows_count {
+	width: 20%;
+	float:right;
+	text-align:right;
+	color: #999;
+  }

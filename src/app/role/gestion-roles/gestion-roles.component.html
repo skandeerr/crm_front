@@ -1,0 +1,52 @@
+<div class=" p-3">
+    <div class="  tb_add mt-10">  
+      
+        <h4 class="btn btn-outline-primary " (click)="openAddEditCltForm()"><i class="fa-solid fa-user-plus"></i> Ajouter Role</h4>
+    
+  </div>
+ 
+</div>
+
+<div class="container">
+    <h1>Rôles et Permissions</h1>
+    <div class="card" *ngFor="let role of roles">
+      <div class="card-header ">
+        <div class="tb_add mt-2"> {{ role.name }}</div>
+       <div class="tb_search"> <button mat-icon-button color="primary"  (click)="openEditCltForm(role)">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button mat-icon-button color="warn" (click)="confirmDelete(role)">
+        <i class="fa-solid fa-trash"></i>
+      </button></div>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li *ngFor="let permission of role.roles">{{ permission.name }}</li>
+        </ul>
+        <div class="text-left">
+       
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" >Confirmation de suppression</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Es-tu sûr de supprimer ce role ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+          <button type="button" class="btn btn-primary" (click)="deleteProspect()">Oui</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

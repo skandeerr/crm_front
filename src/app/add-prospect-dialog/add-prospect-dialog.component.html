@@ -1,0 +1,72 @@
+<div mat-dialog-title>
+    <h1 style="text-align: center;"><b>Remplir les champs</b></h1>
+  </div>
+  
+  <form [formGroup]="ProspectForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+       <div class="column">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom</mat-label>
+            <input matInput type="text" placeholder="Ex. Alex" formControlName="nom">
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="nom-field">
+            <mat-label>Prénom</mat-label>
+            <input matInput type="text" placeholder="Ex. Smith" formControlName="prenom">
+          </mat-form-field>
+        </div>
+    
+   
+        <div class="column">
+          <mat-form-field appearance="outline">
+          <mat-label>Téléphone</mat-label>
+          <input matInput type="number" placeholder="Ex. 99 854 111" formControlName="telephone">
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="nom-field">
+            <mat-label>Adresse</mat-label>
+            <input matInput type="text" placeholder="Ex. Smith" formControlName="adresse">
+          </mat-form-field>
+        </div>
+        <div class="column">
+          <mat-form-field appearance="outline" class="nom-field">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" placeholder="Ex. exemple@domaine.com" formControlName="email">
+            <mat-error
+              *ngIf="ProspectForm.get('email')?.invalid && (ProspectForm.get('email')?.dirty || ProspectForm.get('email')?.touched)">
+              <span *ngIf="ProspectForm.get('email')?.errors?.['required']">L'email est requis.</span>
+              <span *ngIf="ProspectForm.get('email')?.errors?.['email']">L'email n'est pas valide.</span>
+            </mat-error>
+          </mat-form-field>
+          </div>
+
+          <div class="column">
+            <mat-form-field appearance="outline" class="nom-field">
+              <mat-label>Note</mat-label>
+              <input matInput type="text" placeholder="Note..." formControlName="note">
+            </mat-form-field>
+          </div>
+          <div class="column">
+          
+              <mat-form-field>
+                <mat-select placeholder="Statut du prospect" formControlName="statusProspect">
+                  <mat-option *ngFor="let status of statusProspect" [value]="status.value">
+                    {{ status.viewValue }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                *ngIf="ProspectForm.get('statusProspect')?.invalid && (ProspectForm.get('statusProspect')?.dirty || ProspectForm.get('statusProspect')?.touched)">
+                <span *ngIf="ProspectForm.get('statusProspect')?.errors?.['required']">Statut du prospect est requis.</span>
+              </mat-error>
+              </mat-form-field>
+          </div>
+    
+    </div>
+      
+    <div mat-dialog-actions class="action">
+      
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Annuler</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+    </div>
+  
+  </form>

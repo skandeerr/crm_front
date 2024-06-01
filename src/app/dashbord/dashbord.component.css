@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .nav-bar {
+    flex: 0 0 auto;
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .menu-sidebar {
+    flex: 0 0 200px; /* Ajustez cette largeur selon vos besoins */
+    overflow-y: auto;
+  }
+  
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px; /* Ajustez le padding selon vos besoins */
+  }

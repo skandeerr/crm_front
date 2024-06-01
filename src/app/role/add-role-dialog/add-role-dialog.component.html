@@ -1,0 +1,50 @@
+
+
+<div mat-dialog-title>
+    <h1 style="text-align: center;"><b>Remplir les champs</b></h1>
+  </div>
+  
+  <form [formGroup]="PermissionForm" (ngSubmit)="onFormSubmit()" class="">
+    <div mat-dialog-content class="content">
+      <div class="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput type="text" placeholder="Ex. Alex" formControlName="name">
+          <mat-error
+            *ngIf="PermissionForm.get('name')?.invalid && (PermissionForm.get('name')?.dirty || PermissionForm.get('name')?.touched)">
+            <span *ngIf="PermissionForm.get('name')?.errors?.['required']">Le nom est requis.</span>
+            <span *ngIf="PermissionForm.get('name')?.hasError('minlength')">Le nom doit contenir au moins 3 caractères.</span>
+          </mat-error>
+        </mat-form-field>
+  
+       
+      </div>
+      <div class="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Permissions</mat-label>
+          <mat-select formControlName="roles" multiple>
+            <mat-option *ngFor="let permission of permissions" [value]="permission">{{ permission }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="PermissionForm.get('permissions')?.invalid && (PermissionForm.get('permissions')?.dirty || PermissionForm.get('permissions')?.touched)">
+            <span *ngIf="PermissionForm.get('permissions')?.errors?.['required']">Au moins une permission est requise.</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br>
+  
+    
+        <br> <br>
+  
+    
+      </div>
+  
+      <br>
+    
+  
+    <div mat-dialog-actions class="action">
+  
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Annuler</button>
+      <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Enregistrer'}}</button>
+    </div>
+  
+  </form>
