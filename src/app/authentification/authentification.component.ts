@@ -15,7 +15,11 @@ export class AuthentificationComponent implements OnInit {
   signInForm: FormGroup;
   isSignDivVisiable: boolean = true;
   showPassword: boolean = false;
-
+  roles = [
+    {value: 'ADMIN', viewValue: 'Admin'},
+    {value: 'Commercial', viewValue: 'Commercial'},
+    {value: 'Marketing', viewValue: 'Marketing'},
+  ];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -27,6 +31,7 @@ export class AuthentificationComponent implements OnInit {
       fullName: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       email: ['', [Validators.required, Validators.email]],
+      role : ['', [Validators.required]]
     });
 
     this.signInForm = this.fb.group({
@@ -43,7 +48,11 @@ export class AuthentificationComponent implements OnInit {
     return this.showPassword;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(localStorage.getItem('token')!=null){
+      this.router.navigate(['dashboad/statistic']);
+    }
+  }
 
   SignUp() {
     if (this.signUpForm.valid) {
@@ -80,7 +89,7 @@ export class AuthentificationComponent implements OnInit {
         // const accessToken = response['access_token'];
          localStorage.setItem('token', response.accessToken);
          localStorage.setItem('id',response.id)
-
+        localStorage.setItem('role',response.roles)
         // const jwtData = this.getDataFromJWTtoken();
         // console.log('Données JWT :', jwtData);
 

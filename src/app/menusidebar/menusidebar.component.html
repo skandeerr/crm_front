@@ -60,7 +60,7 @@
           <li><a class="link_name" href="#">Calendrier</a></li>
         </ul>
       </li>
-      <li>
+      <li *ngIf="role">
         <div class="iocn-link">
           <a [routerLink]="['/dashboad/permission']">
             <i class='bx bx-shield'></i>
@@ -71,7 +71,7 @@
           </ul>
         </div>
       </li>
-      <li>
+      <li *ngIf="role">
         <div class="iocn-link">
           <a [routerLink]="['/dashboad/role']">
             <i class="fas fa-key"></i>
