@@ -7,7 +7,7 @@
   <div class="transfer-section-header">
    
   <div class="">
-    <div class="  tb_add">  
+    <div class="  tb_add" *ngIf="roleAndPermissionExists(add_task)">  
       
         <h4 class="btn btn-outline-primary " (click)="openAddEditCltForm()"><i class="fa-solid fa-user-plus"></i> Ajouter tache</h4>
     
@@ -71,10 +71,10 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> <h4> Action </h4></th>
         <td mat-cell *matCellDef="let row"> 
-          <button mat-icon-button color="primary"  (click)="openEditCltForm(row)">
+          <button mat-icon-button color="primary"  *ngIf="roleAndPermissionExists(edit_task)"  (click)="openEditCltForm(row)">
             <i class="fas fa-edit"></i>
           </button>
-          <button mat-icon-button color="warn" (click)="confirmDelete(row)">
+          <button mat-icon-button color="warn"  *ngIf="roleAndPermissionExists(delete_task)"  (click)="confirmDelete(row)">
             <i class="fa-solid fa-trash"></i>
           </button>
         </td>

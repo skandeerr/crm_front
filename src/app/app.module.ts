@@ -44,6 +44,7 @@ import { AddRoleDialogComponent } from './role/add-role-dialog/add-role-dialog.c
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -69,8 +70,6 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
     GestionRolesComponent,
     AddRoleDialogComponent,
     
-
-    
     
   ],
   imports: [
@@ -94,8 +93,9 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
     MatSnackBarModule,
     MatSelectModule,
     NgToastModule,
-    GoogleChartsModule,RecurrenceEditorModule,ScheduleModule,FullCalendarModule
-    
+    GoogleChartsModule,RecurrenceEditorModule,ScheduleModule,FullCalendarModule,
+    MatTabsModule
+
 
   ],
   

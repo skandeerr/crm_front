@@ -58,3 +58,17 @@ body {
 	width: 20%;
 	float:left;
   }
+  .permission-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+  }
+  
+  .permission-item span {
+    flex: 1;
+  }
+  
+  .permission-item input {
+    margin-left: 10px;
+  }

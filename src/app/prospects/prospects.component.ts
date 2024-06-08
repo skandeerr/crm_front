@@ -11,6 +11,8 @@ import { AddProspectDialogComponent } from '../add-prospect-dialog/add-prospect-
 import { ClientService } from '../Services/client.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
+import { RoleService } from '../Services/Role.service';
+import { Role } from '../Modéles/Role';
 
 declare var $: any;
 
@@ -30,6 +32,15 @@ export class ProspectsComponent implements OnInit {
     'statusProspect',
     'action',
   ];
+  roles: Role[] = [
+
+  ];
+  add_prospect: string = 'add_prospect';
+  edit_prospect: string = 'edit_prospect';
+  delete_prospect: string = 'delete_prospect';
+  send_mail_prospect: string = 'send_mail_prospect';
+  add_prospect_client: string = 'add_prospect_client';
+  call_prospect: string = 'call_prospect';
   private statusProspect = [
     { value: 'Nouveau', viewValue: 'Nouveau' },
     { value: 'Tentative', viewValue: 'Tentative' },
@@ -53,12 +64,13 @@ export class ProspectsComponent implements OnInit {
     private dialog: MatDialog,
     private coreService: CoreService,
     private toast : NgToastService,
-    private route:Router
+    private route:Router,private roleService : RoleService
 
   ) {}
 
   ngOnInit(): void {
     this.loadProspect();
+    this.loadRoles()
     console.log("jkjkhk",localStorage.getItem("token"))
   }
 
@@ -137,7 +149,28 @@ export class ProspectsComponent implements OnInit {
       },
     });
   }
-
+  loadRoles() {
+    this.roleService.getAllRoles().subscribe({
+      next: (res) => {
+        this.roles=res
+        console.log(this.roles)
+    
+      },
+    });
+  }
+  roleAndPermissionExists(permissionName: string): boolean {
+    console.log(localStorage.getItem("role"))
+    const role = this.roles.find(role => role.name === localStorage.getItem("role")?.toString());
+    console.log(role)
+    if(localStorage.getItem("role")==="ADMIN"){
+      return true
+    }
+    if (role) {
+      console.log(role)
+      return role.roles.some(permission => permission.name === permissionName);
+    }
+    return false;
+  }
   openEditCltForm(data: ProspectModéle) {
     const dialogRef = this.dialog.open(AddProspectDialogComponent, {
       data,

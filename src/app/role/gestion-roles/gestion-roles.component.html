@@ -6,28 +6,52 @@
   </div>
  
 </div>
-
 <div class="container">
-    <h1>Rôles et Permissions</h1>
-    <div class="card" *ngFor="let role of roles">
-      <div class="card-header ">
-        <div class="tb_add mt-2"> {{ role.name }}</div>
-       <div class="tb_search"> <button mat-icon-button color="primary"  (click)="openEditCltForm(role)">
-        <i class="fas fa-edit"></i>
-      </button>
-      <button mat-icon-button color="warn" (click)="confirmDelete(role)">
-        <i class="fa-solid fa-trash"></i>
-      </button></div>
-      </div>
-      <div class="card-body">
-        <ul>
-          <li *ngFor="let permission of role.roles">{{ permission.name }}</li>
-        </ul>
-        <div class="text-left">
-       
-        </div>
+  <h1>Rôles et Permissions</h1>
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="Prospects"> <div class="card mt-2" *ngFor="let role of roles">
+    <div class="card-header ">
+      <div class="tb_add mt-2"> {{ role.name }}</div>
+   
+    </div>
+    <div class="card-body">
+      <ul>
+        <li *ngFor="let permission of prospectRoles" class="permission-item"><span>{{ permission.name }}</span> <input type="checkbox"  (change)="onCheckboxChange($event, role.name, permission)" [checked]=roleAndPermissionExists(role.name,permission.name) ></li>
+      </ul>
+      <div class="text-left">
+      
       </div>
     </div>
+  </div></mat-tab>
+  <mat-tab label="Contacts"> <div class="card mt-2" *ngFor="let role of roles">
+    <div class="card-header ">
+      <div class="tb_add mt-2"> {{ role.name }}</div>
+ 
+    </div>
+    <div class="card-body">
+      <ul>
+        <li *ngFor="let permission of contactRoles" class="permission-item"><span>{{ permission.name }}</span> <input type="checkbox" (change)="onCheckboxChange($event, role.name, permission)" [checked]=roleAndPermissionExists(role.name,permission.name)  ></li>
+      </ul>
+      <div class="text-left">
+      
+      </div>
+    </div>
+  </div></mat-tab>
+  <mat-tab label="Taches"> <div class="card mt-2" *ngFor="let role of roles">
+    <div class="card-header ">
+      <div class="tb_add mt-2"> {{ role.name }}</div>
+    
+    </div>
+    <div class="card-body">
+      <ul>
+        <li *ngFor="let permission of taskRoles" class="permission-item"><span>{{ permission.name }}</span>  <input type="checkbox"   (change)="onCheckboxChange($event, role.name, permission)" [checked]=roleAndPermissionExists(role.name,permission.name)  ></li>
+      </ul>
+      <div class="text-left">
+      
+      </div>
+    </div>
+  </div></mat-tab>
+</mat-tab-group>
   </div>
 
 
@@ -48,5 +72,5 @@
         </div>
       </div>
     </div>
+    
   </div>
-  

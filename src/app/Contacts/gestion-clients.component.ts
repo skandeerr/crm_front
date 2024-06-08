@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CoreService } from '../core/core.service';
 import { NgToastService } from 'ng-angular-popup';
+import { RoleService } from '../Services/Role.service';
+import { Role } from '../Modéles/Role';
 
 declare var $: any;
 
@@ -39,12 +41,19 @@ export class GestionClientsComponent implements OnInit {
   clients: ClientModéle[] = [];
 
   clientToDelete!: ClientModéle;
+  roles: Role[] = [
 
+  ];
+  add_contact: string = 'add_contact';
+  edit_contact: string = 'edit_contact';
+  delete_contact: string = 'delete_contact';
+  send_mail_contact: string = 'send_mail_contact';
+  call_contact: string = 'call_contact';
   constructor(
     private clientService: ClientService,
     private dialog: MatDialog,
     private coreService: CoreService,
-    private toast : NgToastService
+    private toast : NgToastService,private roleService : RoleService
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +70,28 @@ export class GestionClientsComponent implements OnInit {
       },
     });
   }
-
+  loadRoles() {
+    this.roleService.getAllRoles().subscribe({
+      next: (res) => {
+        this.roles=res
+        console.log(this.roles)
+    
+      },
+    });
+  }
+  roleAndPermissionExists(permissionName: string): boolean {
+    console.log(localStorage.getItem("role"))
+    const role = this.roles.find(role => role.name === localStorage.getItem("role")?.toString());
+    console.log(role)
+    if(localStorage.getItem("role")==="ADMIN"){
+      return true
+    }
+    if (role) {
+      console.log(role)
+      return role.roles.some(permission => permission.name === permissionName);
+    }
+    return false;
+  }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

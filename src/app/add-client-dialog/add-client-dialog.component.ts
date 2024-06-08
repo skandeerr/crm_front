@@ -22,7 +22,7 @@ export class AddClientDialogComponent implements OnInit {
   priorite = [
     {value: 'Faible', viewValue: 'Faible'},
     {value: 'Moyenne', viewValue: 'Moyenne'},
-    {value: 'Elevée', viewValue: 'Elevée'}
+    {value: 'élevée', viewValue: 'Elevée'}
   ];
   typeContact = [
     {value: 'Fournisseur', viewValue: 'Fournisseur'},

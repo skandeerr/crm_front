@@ -1,6 +1,7 @@
 export interface Permission {
 
     id: number;
-    name: string;    
+    name: string; 
+    feature : string;   
   }
   

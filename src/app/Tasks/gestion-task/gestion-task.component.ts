@@ -8,6 +8,7 @@ import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.compo
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { Role } from 'src/app/Modéles/Role';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -27,6 +28,12 @@ export class GestionTaskComponent {
   dataSource!: MatTableDataSource<Tasks>;
   taskToDelete!: Tasks;
   AddClient!: Tasks;
+  roles: Role[] = [
+
+  ];
+  add_task: string = 'add_prospect';
+  edit_task: string = 'edit_prospect';
+  delete_task: string = 'delete_prospect';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   displayedColumns: string[] = [
@@ -59,7 +66,19 @@ export class GestionTaskComponent {
   ngOnInit(): void {
     this.loadClients();
   }
-
+  roleAndPermissionExists(permissionName: string): boolean {
+    console.log(localStorage.getItem("role"))
+    const role = this.roles.find(role => role.name === localStorage.getItem("role")?.toString());
+    console.log(role)
+    if(localStorage.getItem("role")==="ADMIN"){
+      return true
+    }
+    if (role) {
+      console.log(role)
+      return role.roles.some(permission => permission.name === permissionName);
+    }
+    return false;
+  }
   loadClients() {
     this.tasksService.getAllTasks().subscribe({
       next: (res) => {

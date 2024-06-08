@@ -24,6 +24,7 @@
     "@fullcalendar/angular": "^6.1.7",
     "@fullcalendar/daygrid": "^6.1.7",
     "@fullcalendar/interaction": "^6.1.7",
+    "@material/tabs": "^2.3.0",
     "@ng-bootstrap/ng-bootstrap": "^12.0.1",
     "@syncfusion/ej2-angular-buttons": "^25.1.35",
     "@syncfusion/ej2-angular-schedule": "^25.1.37",
