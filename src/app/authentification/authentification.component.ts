@@ -17,8 +17,8 @@ export class AuthentificationComponent implements OnInit {
   showPassword: boolean = false;
   roles = [
     {value: 'ADMIN', viewValue: 'Admin'},
-    {value: 'Commercial', viewValue: 'Commercial'},
-    {value: 'Marketing', viewValue: 'Marketing'},
+    {value: 'Responsable de Commercial', viewValue: 'Responsable de Commercial'},
+    {value: 'Responsable de Marketing', viewValue: 'Responsable de Marketing'},
   ];
   constructor(
     private fb: FormBuilder,

@@ -21,6 +21,7 @@ export class StatisticComponent implements OnInit{
     username : "",
     fullName :""
   }
+  role : any = ""
   tasksOfToday : Tasks[] = [];
   chartTask = {
     title: 'Nombre de tâches par mois',
@@ -43,14 +44,14 @@ export class StatisticComponent implements OnInit{
 numberOfClients : number =0;
 numberOfProspects : number = 0;
 chart = {
-  title: 'Client vs Prospect Percentage',
+  title: 'Contact vs Prospect pourcentage',
   type: ChartType.PieChart as ChartType,
   columnNames: ['Type', 'Percentage'],
   data: [] as any[], // Initialiser comme un tableau vide
   options: {
     pieHole: 0.4, // Optionnel : pour un Donut Chart
     is3D: true,   // Optionnel : pour un effet 3D
-    title: 'Percentage of Clients and Prospects',
+    title: 'Pourcentage de Contacts et Prospects',
     slices: {
       0: { color: '#2BB673' }, // Couleur personnalisée pour les clients
       1: { color: '#d91e48' }  // Couleur personnalisée pour les prospects
@@ -93,6 +94,7 @@ ngOnInit(): void {
   this.loadTasks()
   this.loadTasksOfToday()
   this.loadUser()
+  this.role=localStorage.getItem('role')
 }
 
 calculatePercentages(): void {
