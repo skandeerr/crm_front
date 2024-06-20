@@ -122,7 +122,10 @@ export class ProspectsComponent implements OnInit {
       typeContact : "Client",
       priorite : "Faible"
     }
+    
     this.ClientService.ajouterClient(client).subscribe(() => {
+      this.prospectService
+      .deleteProspect(this.AddClient.id)
         this.toast.success({ detail: 'Succés', summary: 'Client ajouté', duration:5000 });
         this.closeConfirmAdd();
         this.route.navigateByUrl("/dashboad/contact");
